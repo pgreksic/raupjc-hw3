@@ -153,7 +153,7 @@ namespace Zadatak1
         /// </ summary >
         public List<TodoItem> GetActive(Guid userId)
         {
-            return _context.TodoItems.Include(item => item.Labels).Where(item => item.UserId == userId && item.IsCompleted.Equals(false))
+            return _context.TodoItems.Include(item => item.Labels).Where(item => item.UserId == userId && item.DateCompleted.Equals(null))
                 .OrderByDescending(item => item.DateCreated).ToList();
         }
 
@@ -162,7 +162,7 @@ namespace Zadatak1
         /// </ summary >
         public List<TodoItem> GetCompleted(Guid userId)
         {
-            return _context.TodoItems.Include(item => item.Labels).Where(item => item.UserId == userId && item.IsCompleted.Equals(true))
+            return _context.TodoItems.Include(item => item.Labels).Where(item => item.UserId == userId && !item.DateCompleted.Equals(null))
                 .OrderByDescending(item => item.DateCreated).ToList();
         }
 
