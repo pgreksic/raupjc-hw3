@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Zadatak1;
 using Zadatak2.Data;
 using Zadatak2.Services;
 
@@ -32,6 +33,10 @@ namespace Zadatak2
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddTransient<ITodoRepository, TodoSqlRepository>();
+
+            services.AddScoped( x => new TodoDbContext(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddMvc()
                 .AddRazorPagesOptions(options =>
