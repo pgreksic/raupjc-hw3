@@ -1,0 +1,37 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using Zadatak2.ViewModels;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IndexViewModel
+
+@{
+    ViewData["Title"] = "Add New TodoItem";
+    Layout = "~/Views/Todo/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Todo Items</title>
+</head>
+<body>
+<h2>Todo Items List</h2>
+<div style="margin-bottom:50px">
+    <a asp-action="Add" style="display:inline-block; text-decoration:none; color:blue; margin-right:20px;">Add new todo items</a>
+    <a asp-action="Completed" style="display:inline-block; text-decoration:none; color:blue;">See completed todo items</a>
+</div>
+@foreach (var item in Model.Items)
+{
+    <div style="margin-bottom:30px">
+        <div>
+            <h4 style="display:inline-block; margin-right:5px;">@item.Text</h4>
+            <p style="display:inline-block; color:blue">@item.getDaysUntilDue()</p>
+            <p>@item.getDateString()</p>
+        </div>
+        <a asp-action="MarkAsCompleted" asp-route-Id="@item.Id" style="color:blue; margin-bottom:30px;">Mark as completed</a>
+    </div>
+}
+</body>
+</html>

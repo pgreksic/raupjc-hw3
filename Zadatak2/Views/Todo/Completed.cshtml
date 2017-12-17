@@ -1,0 +1,30 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using Zadatak1
+@using Zadatak2.ViewModels
+@model CompletedViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Completed";
+    Layout = "~/Views/Todo/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Completed items</title>
+</head>
+<body>
+<h2 style="margin-bottom:50px">Completed Todo Items</h2>
+@foreach (var item in Model.Completed)
+{
+    <div style="margin-bottom:30px">
+        @Html.Partial("CompletedPartial", item)
+        <a asp-action="RemoveFromCompleted" asp-route-Id="@item.Id" style="color:blue;">Remove from completed</a>
+    </div>
+}
+</body>
+</html>

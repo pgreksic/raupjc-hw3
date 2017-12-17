@@ -13,7 +13,9 @@ namespace Zadatak1
 
         public TodoDbContext(string cnnstr) : base(cnnstr)
         {
+
         }
+
 
         public IDbSet<TodoItem> TodoItems { get; set; }
         public IDbSet<TodoItemLabel> TodoItemLabels { get; set; }

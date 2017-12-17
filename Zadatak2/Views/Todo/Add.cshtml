@@ -1,0 +1,20 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using Zadatak2.ViewModels;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model AddTodoViewModel
+
+@{
+    ViewData["Title"] = "Add New TodoItem";
+    Layout = "~/Views/Todo/_Layout.cshtml";
+}
+
+<h1> Add new TodoItem </h1>
+<form asp-action="Add" method="post">
+    Text: <input asp-for="Text" /><span asp-validation-for="Text"></span><br />
+    Labels (Seperate with ":"): <input asp-for="Labels" /><span asp-validation-for="Labels"></span><br />
+    Date due: <input asp-for="DateDue" /><span asp-validation-for="DateDue"></span><br />
+    <input type="submit" />
+</form>
+

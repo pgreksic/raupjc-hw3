@@ -72,7 +72,7 @@ namespace Zadatak1
         /// <returns > True if success , false otherwise </returns >
         public bool Remove(Guid todoId, Guid userId)
         {
-            TodoItem todoItem = _context.TodoItems.Where(item => item.Id == todoId).FirstOrDefault();
+            TodoItem todoItem = _context.TodoItems.SingleOrDefault(item => item.Id == todoId);
             if (todoItem != null)
             {
                 if (todoItem.UserId != userId)
@@ -134,6 +134,7 @@ namespace Zadatak1
                 }
 
                 bool marked = todoItem.MarkAsCompleted();
+                _context.SaveChanges();
                 return marked;
             }
             return false;
@@ -153,7 +154,7 @@ namespace Zadatak1
         /// </ summary >
         public List<TodoItem> GetActive(Guid userId)
         {
-            return _context.TodoItems.Include(item => item.Labels).Where(item => item.UserId == userId && item.DateCompleted.Equals(null))
+            return _context.TodoItems.Include(item => item.Labels).Where(item => item.UserId == userId && !item.IsCompleted)
                 .OrderByDescending(item => item.DateCreated).ToList();
         }
 
@@ -162,7 +163,7 @@ namespace Zadatak1
         /// </ summary >
         public List<TodoItem> GetCompleted(Guid userId)
         {
-            return _context.TodoItems.Include(item => item.Labels).Where(item => item.UserId == userId && !item.DateCompleted.Equals(null))
+            return _context.TodoItems.Include(item => item.Labels).Where(item => item.UserId == userId && item.IsCompleted)
                 .OrderByDescending(item => item.DateCreated).ToList();
         }
 

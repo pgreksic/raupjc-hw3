@@ -72,7 +72,7 @@ namespace Zadatak2
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
+                    template: "{controller=Todo}/{action=Index}/{id?}");
             });
         }
     }

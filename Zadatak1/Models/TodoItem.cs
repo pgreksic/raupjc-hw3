@@ -12,7 +12,17 @@ namespace Zadatak1.Models
         public string Text { get; set; }
         // Shorter syntax for single line getters in C#6
         // public bool IsCompleted => DateCompleted . HasValue ;
-        public bool IsCompleted => DateCompleted.HasValue;
+        public bool IsCompleted
+        {
+            get
+            {
+                return DateCompleted.HasValue;
+            }
+
+            set
+            {
+            }
+        }
 
         public DateTime? DateCompleted { get; set; }
         public DateTime DateCreated { get; set; }
