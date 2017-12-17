@@ -12,16 +12,15 @@ namespace Zadatak2.ViewModels
         [Required]
         public string Text { get; set; }
         public DateTime? DateDue { get; set; }
-        public HashSet<string> Labels { get; set; }
+        public string Labels { get; set; }
 
         public AddTodoViewModel( string text, DateTime dateDue, string labels)
         {
             Text = text;
             DateDue = dateDue;
-            foreach(string tmp in labels.Split(':').ToList())
-            {
-                Labels.Add(tmp);
-            }
+            Labels = labels;
+            //Labels=labels.Split('|');
+             
         }
 
         public AddTodoViewModel()

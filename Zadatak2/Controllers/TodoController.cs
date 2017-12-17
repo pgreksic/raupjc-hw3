@@ -61,12 +61,19 @@ namespace Zadatak2.Controllers
                 TodoItem todoItem= new TodoItem(item.Text, new Guid(currentUser.Id));
                 todoItem.DateDue = item.DateDue;
 
-                if (item.Labels.Count > 0)
+                string[] splitLabels = item.Labels.Split('|');
+
+                if (splitLabels.Length > 0)
                 {
-                    foreach (var label in item.Labels)
+                    foreach (string label in splitLabels)
                     {
-                        todoItem.Labels.Add(new TodoItemLabel(label));
+                        TodoItemLabel temp = new TodoItemLabel(label.Trim());
+                        temp = _repository.ItemLabelCheck(temp);
+                        todoItem.Labels.Add(temp);
+                        //todoItem.Labels.Add(new TodoItemLabel(label));
+
                     }
+
                 }
                 _repository.Add(todoItem);
                 return RedirectToAction("Index");

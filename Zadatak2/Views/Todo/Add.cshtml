@@ -13,7 +13,7 @@
 <h1> Add new TodoItem </h1>
 <form asp-action="Add" method="post">
     Text: <input asp-for="Text" /><span asp-validation-for="Text"></span><br />
-    Labels (Seperate with ":"): <input asp-for="Labels" /><span asp-validation-for="Labels"></span><br />
+    Labels (Seperate with "|"): <input asp-for="Labels" /><span asp-validation-for="Labels"></span><br />
     Date due: <input asp-for="DateDue" /><span asp-validation-for="DateDue"></span><br />
     <input type="submit" />
 </form>

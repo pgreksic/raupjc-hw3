@@ -81,6 +81,9 @@ namespace Zadatak1
         /// </ summary >
         List<TodoItem> GetFiltered (Func<TodoItem, bool> filterFunction, Guid userId);
 
-
+        /// <summary >
+        /// Checks if same TodoItemLabel already exists!
+        /// </ summary >
+        TodoItemLabel ItemLabelCheck(TodoItemLabel newLabel);
     }
 }

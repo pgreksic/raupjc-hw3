@@ -175,5 +175,20 @@ namespace Zadatak1
             return _context.TodoItems.Include(item => item.Labels).Where(item => item.UserId == userId).AsEnumerable()
                 .Where(filterFunction).ToList();
         }
+
+        public TodoItemLabel ItemLabelCheck( TodoItemLabel newLabel)
+        {
+            TodoItemLabel itemLabel =
+                _context.TodoItemLabels.Where(label => label.Value == newLabel.Value).FirstOrDefault();
+
+            if (itemLabel == null)
+            {
+                _context.TodoItemLabels.Add(newLabel);
+                _context.SaveChanges();
+                return newLabel;
+            }
+
+            return itemLabel;
+        }
     }
 }
